@@ -1,7 +1,7 @@
 function Knight() {
     this.health = 4; // DO NOT MANUALLY CHANGE THIS FROM 4
   
-    this.heal = function () {
+    this.heal = () => {
       this.health += 2;
       alert(`You Healed!  Your health is now ${this.health}`);
     };
@@ -9,6 +9,35 @@ function Knight() {
     // You must keep this function working.
     this.getHealth = () => {
       return this.health;
+    };
+
+    this.killGargoyle = () => {
+      if (monster && monster.getHealth() && monster.name.includes("Gargoyle")) {
+        this.heal();
+        monster.slash();
+        monster.slash();
+        monster.slash();
+      } else {
+        alert(`You couldn't attack monster...`);
+      }
+    };
+
+    this.killWizard = () => {
+      if (monster && monster.getHealth() && monster.name=="Wizard") {
+        this.heal();
+        monster.giveBomb(function() { return 3;});
+      } else {
+        alert(`You couldn't attack monster...`);
+      }
+    };
+
+    this.killPirate = () => {
+      if (monster && monster.getHealth() && monster.name=="Pirate") {
+        this.heal();
+        monster.serenade("plunder me hearties pirate's life");
+      } else {
+        alert(`You couldn't attack monster...`);
+      }
     };
   }
   
